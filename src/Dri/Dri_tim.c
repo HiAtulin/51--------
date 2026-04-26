@@ -1,4 +1,4 @@
-#include "Com_tim.h"
+#include "Dri_tim.h"
 
 // 定时器2回调函数数组
 static Timer2_Callback s_timer2_callback[TIMER2_CALLBACK_NUM];
