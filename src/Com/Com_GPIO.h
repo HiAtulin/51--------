@@ -8,7 +8,7 @@
 #define LED_BL P21 //后左
 
 //蜂鸣器
-#define BUZZER_EN P7
+#define BUZZER_EN P07
 
 //按键
 #define KEY_SW1 P41
