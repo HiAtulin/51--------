@@ -78,3 +78,18 @@ bit Driver_TIM2_DeregisterCallback(Timer2_Callback callback)
     }
     return 0; // 注销失败，未找到对应的回调函数
 }
+
+// 定时器2中断服务程序
+void Driver_TIM2_ISR(void) interrupt 5
+{
+    TF2 = 0; // 清除定时器2溢出标志
+    // 调用所有注册的回调函数
+    u8 i;
+    for (i = 0; i < s_callback_count; i++)
+    {
+        if (s_timer2_callback[i])
+        {
+            s_timer2_callback[i](); // 调用注册的回调函数
+        }
+    }
+}
