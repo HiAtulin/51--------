@@ -2,8 +2,9 @@
 #define __COM_TIM_H__
 
 #include "Com_Util.h"
+#include "STDIO.H"
 
-typedef (*Timer2_Callback)(void);
+typedef void (*Timer2_Callback)(void);
 
 #define TIMER2_CALLBACK_NUM 4
 

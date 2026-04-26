@@ -14,7 +14,7 @@ void Driver_TIM2_Init(void)
     C_T2 = 0; // 定时器2使用内部时钟
     RCLK = 0;
     TCLK = 0;
-    CP_RL2 = 1; // 定时器2自动重载
+    CP_RL2 = 0; // 定时器2自动重载
     EXEN2 = 0;  // 定时器2不使用外部事件触发
     // 配置定时器2的初始值和重载值
     // 计算出定时器加1的时间为11.0592MHz/12=921600Hz，即每1.085微秒
@@ -35,12 +35,13 @@ void Driver_TIM2_Init(void)
  */
 bit Driver_TIM2_RegisterCallback(Timer2_Callback callback)
 {
+    u8 i;
     if (s_callback_count >= TIMER2_CALLBACK_NUM)
     {
         return 0; // 注册失败，回调函数数组已满
     }
     // 检查是否已经注册过相同的回调函数
-    u8 i;
+
     for (i = 0; i < s_callback_count; i++)
     {
         if (s_timer2_callback[i] == callback)
@@ -82,9 +83,9 @@ bit Driver_TIM2_DeregisterCallback(Timer2_Callback callback)
 // 定时器2中断服务程序
 void Driver_TIM2_ISR(void) interrupt 5
 {
+    u8 i;
     TF2 = 0; // 清除定时器2溢出标志
     // 调用所有注册的回调函数
-    u8 i;
     for (i = 0; i < s_callback_count; i++)
     {
         if (s_timer2_callback[i])
