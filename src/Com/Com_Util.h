@@ -2,6 +2,8 @@
 #define _COM_UTIL_H__
 
 #include "Com_GPIO.h"
+
+#include "INTRINS.H"
 #include <STC89C5xRC.H>
 
 typedef unsigned char u8;

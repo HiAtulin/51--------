@@ -13,11 +13,11 @@ void Dri_I2C_Start(void)
     SCL = 0;
 }
 
-void Dri_I2C_SendByte(u8 data)
+void Dri_I2C_SendByte(u8 dat)
 {
     u8 i = 0;
     // 使用单片机中暂存的通用寄存器来存储数据
-    B = data; // 将要发送的数据存储在寄存器B中
+    B = dat; // 将要发送的数据存储在寄存器B中
     for (i = 0; i < 8; i++)
     {
         SDA = B7; // 取出B寄存器的最高位，发送到SDA线上
@@ -48,18 +48,18 @@ bit Dri_I2C_RecvACK(void)
 u8 Dri_I2C_ReceiveByte(void)
 {
     u8 i = 0;
-    u8 data = 0x00; // 用于存储接收到的数据
+    u8 byte = 0x00; // 用于存储接收到的数据
     for (i = 0; i < 8; i++)
     {
         SCL = 1;    // 拉高SCL，准备接收数据
-        data <<= 1; // 将接收到的数据左移一位，为下一位数据准备好最低位
-        if (SDA)    // 读取SDA线上的数据，如果是高电平则在data的最低位上设置为1
+        byte <<= 1; // 将接收到的数据左移一位，为下一位数据准备好最低位
+        if (SDA)    // 读取SDA线上的数据，如果是高电平则在byte的最低位上设置为1
         {
-            data |= 0x01;
+            byte |= 0x01;
         }
         SCL = 0; // 拉低SCL，准备接收下一位数据
     }
-    return data;
+    return byte;
 }
 
 void Dri_I2C_Stop(void)

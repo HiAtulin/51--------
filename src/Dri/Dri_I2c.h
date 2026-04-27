@@ -33,9 +33,9 @@ bit Dri_I2C_RecvACK(void);
 
 /**
  * @brief  发送一个字节数据
- * @param  data 要发送的数据
+ * @param  byte 要发送的数据
  */
-void Dri_I2C_SendByte(u8 data);
+void Dri_I2C_SendByte(u8 dat);
 
 /**
  * @brief  从I2C总线上接收一个字节数据
