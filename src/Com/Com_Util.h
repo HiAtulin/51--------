@@ -12,6 +12,6 @@ typedef unsigned long u32;
 
 
 void Com_Util_Delay1ms(u16 count);
-
+void Com_Util_Delay10us(void);
 
 #endif // !1

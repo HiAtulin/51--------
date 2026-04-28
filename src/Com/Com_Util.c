@@ -14,3 +14,10 @@ void Com_Util_Delay1ms(u16 count) //@11.0592MHz
         } while (--i);
     }
 }
+
+void Com_Util_Delay10us(void)
+{
+    unsigned char data i;
+    i = 2;
+    while (--i);
+}

@@ -1737,6 +1737,6 @@ void Int_OLED_DisplayString(u8 *str, u8 x, u8 y)
 void Int_OLED_DisplayNum(u32 num, u8 x, u8 y)
 {
     u8 number_str[17];
-    sprintf(number_str, "%ld", num); // 将数字转换为字符串
+    sprintf(number_str, "%ld      ", num); // 将数字转换为字符串
     Int_OLED_DisplayString(number_str, x, y); // 显示字符串
 }

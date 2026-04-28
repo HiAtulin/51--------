@@ -2,34 +2,23 @@
 #include "Dri_tim.h"
 #include "Int_Buzzer.h"
 #include "Int_OLED.h"
-#include <STC89C5xRC.H>
+#include "Int_Radar.h"
 
 static u16 count = 0;
 
-// void LED_callback(void)
-// {
-//     // 每1ms调用一次，500ms翻转一次LED状态
-//     count++;
-//     if (count >= 500)
-//     {
-//        count = 0;
-//        LED_FR = ~LED_FR; // 翻转LED状态
-//     }
-// }
-
 void main()
 {
+    u16 distance = 0;
     Driver_TIM2_Init();
     Int_OLED_Init();
-    Int_OLED_Clear();                             // 清屏
-    Int_OLED_DisplayString("Hello, OLED!", 0, 0); // 在OLED上显示字符串
-    Int_OLED_DisplayNum(12345, 0, 1);             // 在OLED上显示数字
-    // Int_Buzzer_Init();
-    // Int_Buzzer_Buzz(3000); // 蜂鸣器响起5秒钟
-    // Driver_TIM2_RegisterCallback(LED_callback);
-    // Com_Util_Delay1ms(3000); // 等待3秒钟，观察LED状态变化
-    // Driver_TIM2_DeregisterCallback(LED_callback);
+    Int_OLED_Clear(); // 清屏
+    Int_Radar_Init(); // 初始化超声波雷达
+    Int_Buzzer_Init();
+
+
     while (1)
     {
+        distance = Int_Radar_GetDistance(); // 获取距离值
+        Int_OLED_DisplayNum(distance, 0, 0); // 在OLED上显示距离值
     }
 }
