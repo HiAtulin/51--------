@@ -21,17 +21,20 @@ void main()
 
     // 使用蓝牙
     Dri_UART_Init();             // 初始化UART模块
-    Int_BLE_TransmitBytes("AT"); // 发送AT命令测试蓝牙模块是否正常工作
+    // Int_BLE_TransmitBytes("AT"); // 发送AT命令测试蓝牙模块是否正常工作
 
-    while (Int_BLE_ReceiveBytes(receive_buf) == 0)
-    { // 等待接收数据
-    }
-    Int_OLED_DisplayString(receive_buf, 0, 0); // 在OLED上显示接收到的数据
-    while (Int_BLE_ReceiveBytes(receive_buf) == 0)
-    { // 等待接收数据
-    }
-    Int_OLED_DisplayString(receive_buf, 0, 1);
+    // while (Int_BLE_ReceiveBytes(receive_buf) == 0)
+    // { // 等待接收数据
+    // }
+    // Int_OLED_DisplayString(receive_buf, 0, 0); // 在OLED上显示接收到的数据
+    // while (Int_BLE_ReceiveBytes(receive_buf) == 0)
+    // { // 等待接收数据
+    // }
+    // Int_OLED_DisplayString(receive_buf, 0, 1);
+
+    
     while (1)
     {
+        App_Remote_Control();
     }
 }
