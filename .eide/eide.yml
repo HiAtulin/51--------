@@ -16,7 +16,8 @@ miscInfo:
 targets:
   Debug:
     cppPreprocessAttrs:
-      defineList: []
+      defineList:
+        - DEBUG
       incList:
         - inc
         - ../../../software/Keil_v5/C51/INC/STC
