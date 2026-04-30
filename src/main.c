@@ -6,11 +6,15 @@
 #include "Int_OLED.h"
 #include "Int_Radar.h"
 #include "Int_ble.h"
+#include "App_Remote.h"
+#include "Int_Sensor.h"
+#include "App_Patrol.h"
 
 static u8 receive_buf[16]; // 接收缓冲区
 
 void main()
 {
+    char error;
     u16 distance = 0;
     Driver_TIM2_Init(); // 初始化定时器2，用于产生PWM信号和定时调用回调函数
     Int_OLED_Init();    // 初始化OLED显示屏
@@ -35,6 +39,6 @@ void main()
     
     while (1)
     {
-        App_Remote_Control();
+        // App_Patrol_Control();
     }
 }
