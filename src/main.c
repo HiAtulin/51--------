@@ -39,6 +39,6 @@ void main()
     
     while (1)
     {
-        // App_Patrol_Control();
+        App_Patrol_Control(); 
     }
 }
