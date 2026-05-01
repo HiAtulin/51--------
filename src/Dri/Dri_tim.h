@@ -6,7 +6,7 @@
 
 typedef void (*Timer2_Callback)(void);
 
-#define TIMER2_CALLBACK_NUM 4
+#define TIMER2_CALLBACK_NUM 5
 
 /**
  * @brief 定时器2初始化

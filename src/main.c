@@ -9,13 +9,14 @@
 #include "App_Remote.h"
 #include "Int_Sensor.h"
 #include "App_Patrol.h"
+#include "Int_Key.h"
+#include "App_Mode.h"
 
 static u8 receive_buf[16]; // 接收缓冲区
 
 void main()
 {
-    char error;
-    u16 distance = 0;
+    u8 key1_status,key2_status;
     Driver_TIM2_Init(); // 初始化定时器2，用于产生PWM信号和定时调用回调函数
     Int_OLED_Init();    // 初始化OLED显示屏
     Int_OLED_Clear();   // 清屏
@@ -25,20 +26,24 @@ void main()
 
     // 使用蓝牙
     Dri_UART_Init();             // 初始化UART模块
-    // Int_BLE_TransmitBytes("AT"); // 发送AT命令测试蓝牙模块是否正常工作
-
-    // while (Int_BLE_ReceiveBytes(receive_buf) == 0)
-    // { // 等待接收数据
-    // }
-    // Int_OLED_DisplayString(receive_buf, 0, 0); // 在OLED上显示接收到的数据
-    // while (Int_BLE_ReceiveBytes(receive_buf) == 0)
-    // { // 等待接收数据
-    // }
-    // Int_OLED_DisplayString(receive_buf, 0, 1);
-
-    
+    Int_Key_Init();
+    App_Mode_Init();
     while (1)
     {
-        App_Patrol_Control(); 
+        switch (App_Mode_GetMode())
+        {
+        case REMOTE:
+            App_Remote_Control();
+            break;
+        case PATROL:
+            App_Patrol_Control();
+            break;
+        case AVOIDANCE:
+            App_Avoidance_Control();
+            break;
+        
+        default:
+            break;
+        }
     }
 }
